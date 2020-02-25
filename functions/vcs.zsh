@@ -22,8 +22,9 @@ function +vi-git-untracked() {
   fi
 
   [[ -z $untrackedFiles ]] && return
-
-  hook_com[unstaged]+=" $(print_icon 'VCS_UNTRACKED_ICON')"
+  
+  untracked_num=$(echo $untrackedFiles | grep -c '^')
+  hook_com[unstaged]+=" $(print_icon 'VCS_UNTRACKED_ICON' | $untracked_num)"
   VCS_WORKDIR_HALF_DIRTY=true
 }
 
